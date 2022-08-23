@@ -1,33 +1,31 @@
 <!-- Header -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <th:block th:replace="~{/layout/header::setContent(~{this::content})}">
    <th:block th:fragment="content">
       </th:block>
 </th:block>
-
-
         <div class='inner-div'>
-
             <br>
             <br><br>
-            <table style ='text-align :justify; width:430px; height: 200px; margin-left:auto; margin-right:auto;'>
-                <tr style="font-size : 17px; text-align: center; border-bottom: solid; border-bottom-color: #481677">
+            <table style ='text-align :justify; width:550px; height: 300px; margin-left:auto; margin-right:auto;'>
+                <tr style="font-size : 18px; text-align: center; border-bottom: solid; border-bottom-color: #481677">
                     <th >상품 사진</th>
                     <th style="width: 210px;">상품 정보</th>
                 </tr>
 
                 <tr>
-                    <td rowspan="3" style="text-align: center;"> <img th:src= "@{/images/}+${dto.thumb}" width="205px" height="150px"> </td>
-                    <td th:text="@{상품 이름 : }+${dto.name}">상품 이름 :  </td>
+                    <td rowspan="3" style="text-align: center;"> <img th:src= "@{/images/}+${dto.thumb}" width="350px" height="250px"> </td>
+                    <td th:text="@{&nbsp 상품 이름 : &nbsp}+${dto.name}" style = "font-weight: bold; font-size: 15px;">  </td>
                 </tr>
 
                 <tr>
-                    <td th:text="@{상품 가격 : }+${dto.price}">상품 가격 :   </td>
+                    <td th:text="@{ &nbsp 상품 가격 :  &nbsp }+${dto.price}" style = "font-weight: bold; font-size: 15px;">  </td>
                 </tr>
 
                 <tr>
-                    <td th:text="@{지갑 잔액 : }+${balance}">지갑 잔액 :   </td>
+                    <td th:text="@{ &nbsp 지갑 잔액 :  &nbsp}+${balance}" style = "font-weight: bold; font-size: 15px;">  </td>
                 </tr>
                 <tr>
                     <td> &nbsp</td>
@@ -43,9 +41,19 @@
 
                 </tr>
                 <tr style= "text-align: center; margin-left: 10%;">
-                    <td> <button class="goCharge" > <a th:href="@{/wallet/chargeRequest}">코인 충전 </a></button> </td>
+                
+	                <td> 
+	                	<a class="btn"  th:href="@{/wallet/chargeRequest}">
+	                    	<button class="goCharge" />코 인 충 전 
+	                   </a>
+	                </td>
 
-                    <td th:if="${dto.price}<=${balance}"> <button class="gobuyConfirm" > <a th:href="@{/myPage/trade(pnum=${dto.pnum})}"> 구매 하기 </a></button></td>
+                    <td th:if="${dto.price}<=${balance}"> 
+                    	<a class="btn" th:href="@{/myPage/trade(pnum=${dto.pnum})}"> 
+                    	<!-- <a class="btn"> --> 
+                    		<button class="gobuyConfirm" />구 매 하 기 
+                    	</a>
+                    </td>
                 </tr>
             </table>
 
@@ -56,34 +64,33 @@
 </th:block>
 </html>
 
-
+<th:block th:replace="~{/layout/footer::setContent(~{this::content})}">
+	<th:block th:fragment="content">
+	</th:block>
+</th:block>
 
 <Style>
     /*버튼디자인*/
     button{
         color: black;
-        width: 120px;
-        height: 35px;
+        width: 130px;
+        height: 45px;
         background-color: #481677;
         border-color :white;
         border-radius: 10px;
 
     }
 
-    a{
+    a.btn{
         text-decoration: none;
         color : white;
         font-weight: bold;
         font-size: 15px;
     }
-
-
-    button :active{
-        box-shadow: 0 0 #74a3b0;
-        background-color: #709CA8;
-    }
-
-
+	
+	a.btn :hover{
+		color: white;
+	}
 
     p.subtitle{
         font-weight: 500;
@@ -102,8 +109,3 @@
     }
 </style>
 
-<!-- Footer -->
-<th:block th:replace="~{/layout/footer::setContent(~{this::content})}">
-   <th:block th:fragment="content">
-   </th:block>
-</th:block>

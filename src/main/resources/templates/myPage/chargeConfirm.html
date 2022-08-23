@@ -21,7 +21,7 @@
 		-->
 		
 		<table class="table tale-striped" 
-		style="width : 1300px; margin-left:auto; margin-right:auto;"> 
+		style="width : 1310px; margin-left:auto; margin-right:auto;"> 
 			<thead>
 				<tr style="font-size : 17px;">
 					<!-- <th>블록 아이디</th> -->
@@ -34,7 +34,7 @@
 				</tr>
 			</thead>
 			
-			<tr th:each="dto:${result}" th:if="${result!=null}" style="font-size: 12px;">
+			<tr th:each="dto:${result}" th:if="${result!=null}" style="font-size: 12px; text-align: center;">
 			
 			
 			
@@ -103,7 +103,8 @@
 			<input type="hidden" name="tnum" value="" />
 			<!-- <input type="hidden" name="member" value="" /> -->
 		</form>
-				s
+				  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 		<script>
 			//구매확정버튼
 			$(".comfirmBtn").click(function(e){
@@ -147,7 +148,7 @@
 					        +"<p id='timestamp'><b>Tiemstamp :</b> <br><br>"+data.Timestamp+"<br></p>"
 					        //+"</div>"
 					        
-					        + "<img class='barcode' src= '/image/img.jpg' style=' height:100px; width: 400;' />"
+					        + "<img class='barcode' src= '/images/barcode.jpg' style=' height:100px; width: 400;' />"
 					        //+ "<p><b>**********************</b></p>"
 					        +"<p>Returns With receipt,</p>"
 					        +"<p>subject to CVS Return Policy</p>"
@@ -194,6 +195,7 @@
 				        +"<p id='Amount'><b>Amount :</b> <br><br>"+data.Amount+"<br></p>"
 				        //+"</div>"
 				        
+				        + "<img class='barcode' src= '/images/barcode.jpg' style=' height:100px; width: 400;' />"				        
 				        //+ "<p><b>**********************</b></p>"
 				        +"<p>Returns With receipt,</p>"
 				        +"<p>subject to CVS Return Policy</p>"

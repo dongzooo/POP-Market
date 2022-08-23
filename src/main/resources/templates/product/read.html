@@ -4,51 +4,58 @@
 	<th:block th:fragment="content">
 	</th:block>
 </th:block>
-		<!-- Product section-->
-		<section class="py-5">
-			<div class="container px-4 px-lg-5 my-5" >
-				<div class="row gx-4 gx-lg-5 align-items-center">
-					<div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" th:src="@{/images/}+${dto.thumb}" alt="..." /></div>
-					<div class="col-md-6">
-						<div class="small mb-2">  </div>
-						<div class="small mb-2">  </div>
-						<div class="small mb-1">  </div>
-					<!--	<h3 class="display-5 fw-bolder" th:text="@{#.}+${dto.pnum}">Shop item template</h3>-->
-						<h1>[[${dto.name}]]</h1>
+		 <div class='inner-div'>
 
-						<p class="lead">[[${dto.detail}]]</p>
+            <br>
+            <br><br>
+            <table style ='text-align :justify; width:600px; height: 300px; margin-left:auto; margin-right:auto;'>
 
-						<div class="fs-5 mb-5">
-							<!--							<span class="text-decoration-line-through">$45.00</span>-->
-							<!--							<span th:text="@{\\}+${dto.price}">$40.00</span>-->
-							<h4 th:text="@{가 격 : }+${dto.price}+@{원}" style="margin-top: 2rem; margin-right: 3rem; margin-left:0;" ></h4>
-							<h4 th:text="@{작성자 : }+${dto.nickname}"></h4>
-							<h4 th:text="@{거래지역 : }+${mdto.addr}"></h4>
-						</div>
 
-					</div>
+                <tr>
+                    <td rowspan="5" style="text-align: center;"> <img th:src= "@{/images/}+${dto.thumb}" width="350px" height="250px"> </td>
+                    <td th:text="@{&nbsp &nbsp}+${dto.name}" style = "font-weight: bold; font-size: 23px;">  </td>
+                </tr>
 
-				</div>
-				<div class="row gx-4 gx-lg-5 align-items-center">
-					<div class="container px-4 px-lg-5 my-5">
-						<div style ="text-align: center; ">
-							<a href="/main" class="col-md-6">
-								<button type="button"/>목록보기
-							</a><!-- style="background-color: blueviolet; color:white; width: 90%;  margin-top: 5rem;" -->
+                <tr>
+                    <td th:text="@{ &nbsp  &nbsp 판매자 : &nbsp  }+${dto.nickname}" style = "font-weight: bold; font-size: 15px;"> </td>
+                
+                </tr>
 
-							<a th:href="@{/product/buy(pnum=${dto.pnum})}" class="col-md-6">
-								<button type="submit">구매하기</button>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
+                <tr>
+                    <td th:text="@{ &nbsp &nbsp 가격 :  &nbsp }+${dto.price} +@{원}" style = "font-weight: bold; font-size: 15px;">  </td>
+                
+                </tr>
+                
+                 <tr>
+                    <td th:text="@{ &nbsp &nbsp 거래 지역 :  &nbsp }+${mdto.addr}" style = "font-weight: bold; font-size: 14px;">  </td>
+                
+                </tr>
+                <tr>
+                    <td th:text="@{ &nbsp &nbsp &nbsp }+${dto.detail}" style = "font-size: 14px;">  </td>
+                </tr>
+                
+                <tr>
+                    <td> &nbsp</td>
+                    <td>&nbsp</td>
+                </tr>
 
-		</section>
-		<section class="py-5">
+                </tr>
+                <tr style= "text-align: center; margin-left: 10%;">
+	                <td>
+						<a class="btn" href="/main" >
+							<button />목 록 보 기
+						</a>
+					</td>
+					<td>
+						<a class="btn" th:href="@{/product/buy(pnum=${dto.pnum})}" >
+							<button />구 매 하 기
+						</a>
+					</td>
+                </tr>
+            </table>
 
-		</section>
-
+            <br><br><br><br><br><br>
+        </div>
 		<script>
 			$(".btn-warning").click(function() {
 				if(!confirm("구매하시겠습니까?")) {
@@ -89,8 +96,6 @@
 			});
 		</script>
 
-	</th:block>
-</th:block>
 
 
 <th:block th:replace="~{/layout/footer::setContent(~{this::content})}">
@@ -102,25 +107,30 @@
 <style>
     /*버튼디자인*/
     button{
-        color: black;
-        width: 120px;
-        height: 35px;
+        width: 130px;
+        height: 45px;
         background-color: #481677;
         border-color :white;
         border-radius: 10px;
 
     }
 
-    a{
+    a.btn{
         text-decoration: none;
         color : white;
         font-weight: bold;
         font-size: 15px;
     }
+    
+    a.btn:hover{
+		color: white;
+	}
 
-
+		
+/*
     button :active{
         box-shadow: 0 0 #74a3b0;
         background-color: #709CA8;
     }
+    */
 </style>

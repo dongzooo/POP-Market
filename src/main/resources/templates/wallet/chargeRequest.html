@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js" type="text/javascript"></script>
+
 <th:block th:replace="~{/layout/header::setContent(~{this::content})}">
 	<th:block th:fragment="content">
 	</th:block>
@@ -17,7 +19,7 @@
 		<h1 class="mt4" align="center">충    전</h1>
 		<br>
 		<form th:name="chargeForm"   th:action="@{/wallet/chargeRequest}" th:method="post"
-			th:onsubmit="return check()">
+			th:onsubmit="return requestPay()">
 			<table align="center">
 				<tr>
 					<td>현재 잔액</td>
@@ -47,9 +49,10 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<a href="/product/list"><input class= "btn" type="button" onclick="window.location='/main'" value="취  소" /></a>
+						<!-- <a href="/product/list"><input class= "btn" type="button" onclick="window.location='/main'" value="취  소" /></a> -->
+						<a href="/product/list"><input class= "btn" type="button" value="취  소" /></a>
 						&nbsp &nbsp  &nbsp &nbsp
-						<input type="submit" class= "btn" value="확  인"  />
+						<input  class= "btn" value="확  인" onclick= "requestPay()" />
 					</td>
 				</tr>
 			</table>
@@ -57,7 +60,10 @@
 
 	</div>
 </div>
+
 <script>
+
+	
 	function check(){
 		let form = document.chargeForm;
 		if(!form.total.value){
@@ -69,7 +75,35 @@
 			return false;
 		}
 	}
+
+	function requestPay() {
+		  IMP.init('imp70055776'); //곽동주의 것이므로 공유 불가..자신의 "가맹점 식별코드"를 사용 
+		  IMP.request_pay({
+		    pg: "inicis",
+		    pay_method: "card",
+		    merchant_uid : 'merchant_'+new Date().getTime(),
+		    name : '결제테스트',
+		    amount : 100,
+		    buyer_email : "dhel48@nate.com",
+		    buyer_name : "Kwak",
+		    buyer_tel : "010-3187-2488",
+		    buyer_addr : "서울시 동대문구 이문동",
+		    buyer_postcode : '123-456'
+		  }, function (rsp) {
+			    console.log(rsp);
+			    if (rsp.success) {
+			      var msg = '결제가 완료되었습니다.';
+			      alert(msg);
+			      location.href = "/"
+			    } else {
+			      var msg = '결제에 실패하였습니다.';
+			      msg += '에러내용 : ' + rsp.error_msg;
+			      alert(msg);
+			    }
+		  });
+		}
 </script>
+
 
 <th:block th:replace="~{/layout/footer::setContent(~{this::content})}">
 	<th:block th:fragment="content">
@@ -104,7 +138,6 @@
 	input.btn:hover{
 		background-color: white;
 		border-color :#481677;
-
 	}
 	table {
 		width: 400px;

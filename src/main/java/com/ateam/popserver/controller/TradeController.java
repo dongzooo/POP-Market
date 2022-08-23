@@ -90,6 +90,7 @@ public class TradeController {
 		Long mnum = member.getMnum();
 		//System.out.println("tradeConfirm mnum ::: "+mnum);
 		ProductDTO pdto = productService.read(mnum, pnum);
+		
 		System.out.println(pdto+"============================222222222===========");
 		MemberDTO mdto = memberService.getMemberDto(pdto.getMnum());
 		System.out.println(mdto+"============================33333333333===========");
